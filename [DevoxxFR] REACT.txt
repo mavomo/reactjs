@@ -1,0 +1,102 @@
+//[DevoxxFR] REACT.JS 
+
+Le grand intérêt des conférences et autre meetUp à mes yeux est qu'on en ressort toujours un peu changé. En mieux. Un peu moins bête quoi.
+Par exemple, j'ai assisté aux BoF et aux conférences de la journée du Vendredi du devoxx 2014 Paris, France et j'avais immédiatement envie d. 
+
+Plein de belles choses! Les présentations qu'on attendait avec impatience (Java 8, IoT), des technologies/langages dont on entend parler sans se résoudre à s'y mettre (scala, groovy,play je m'excuse) et des innovations qui chamboulent à tout jamais la vision qu'on avait de notre façon de travailler.
+Dans la dernière catégorie, je range le framework de facebook React.js.
+
+Alors, React.js, pour ceux qui comme moi, il y a quelque jours, ne connaissent pas est un framework qui se propose de modifier notre façon de contruire la partie {View} de nos applications web. 
+
+//Présentation 
+
+React.JS est une librairie JS exclusivement liée à la partie view. Il permet affiche le HTML et de répondre aux événements.
+Il nous amène à repenser l'interaction entre les views (Backbone, AngularJS etc.) et les templates.
+En fait, la notion de template comme on la connaît avec Handlebar n'existe plus. Il n'y en a que pour les composants.
+
+//Notions clés.
+
+=== Component === The Component maintains an immutable property bag called props, and a state that represents the user-driven state of the UI.
+As part of the intermediate DOM generation, the Component also attaches event-handlers and binds the data contained in props and state.
+
+=== DOM Virtuel === 
+    Selon la documentation "React uses a *virtual DOM* diff implementation for ultra-high performance". 
+
+==== JSX ===  : to build the component tree as a set of XML nodes. JSX language only makes it easy to create the intermediate DOM.
+
+// Properties 
+
+//State
+
+//Exemple de code : Hello world 
+
+-- Code HTML  - 
+<!DOCTYPE html>
+<html>	
+	<head>
+   	   <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+ 	   <title> Hello world with React.js </title>   
+  </head>
+  <body>
+  	 <div id="helloooo"></div>
+  	
+  	<script src="build/react.js"></script>
+    <script src="build/JSXTransformer.js"></script>
+    <script type="text/jsx" src="helloworld.js"></script> 
+  </body>
+</html>
+
+-- Exemple de création du composant ( fichier.js)
+/** @jsx React.DOM */
+var App = React.createClass({
+	render : function(){
+		return (
+				<div>
+					<h1> Hello world. I am a component! </h1>
+					<p> You have nothing to worry about.</p>
+				</div>
+			   )
+	}
+});
+
+//Appel du composant. 
+// Le deuxième paramètre doit correspondre à un tag du fichier HTML Défini.
+React.renderComponent(<App />, helloooo);
+
+Commentaire : 
+ Dans cet exemple basique, il convient de spécifier quelques points :
+
+ Dans le fichier HTML :  
+   * La div doit avoir un id, si je remplace par une classe, j'ai ReferenceError (Uncaught ReferenceError: helloooo is not defined)
+
+ Dans le fichier Javascript : React.renderComponent(<App />, helloooo);
+   * Sur cette ligne on fait appel au composant que l'on vient de créer et le deuxième paramètre doit correspondre à un id existant dans le fichier HTML.
+
+   * La fonction render est la partie prise en charge par JSX pour la génération de l'arbre du DOM. Elle ne peut renvoyer qu'un seul élement.
+
+-- Pour aller plus loin 
+http://code.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660
+http://facebook.github.io/react/docs/thinking-in-react.html
+
+
+Disclaimer : 
+   Les fichiers d'exemple fournis fonctionnent très bien tout seul. Mais, Dans mon cas, j'ai dû démarrer node.
+
+
+//Conclusion
+Un framework orienté vue propulsé par facebook, on se doute que c'est lourd.
+Personnellement je trouve que l'approche par composant prend tout son sens lorsqu'on sait à quoi doit ressembler sa vue.
+Le HTML est par nature sous forme d'arbre. Modéliser chaque portion et l'intégrer sous le noeud qui va bien, facilite 
+indéniablement les choses. C'est autre chose lorsque l'on doit "appender" la template dans le {$el} qui va bien.
+
+//Qui l'utilise ?
+-> Facebook/Instagram
+
+//Téléchargements 
+** Site officiel 
+
+//Source 
+http://facebook.github.io/react/docs/thinking-in-react.html
+
+
+
