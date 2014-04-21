@@ -1,0 +1,15 @@
+{
+  "name": "hello_react",
+  "version": "1.0.0",
+  "description": "A 'Hello world' application using react",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "react",
+    "js"
+  ],
+  "author": "Michelle AVOMO",
+  "license": "MIT"
+}
