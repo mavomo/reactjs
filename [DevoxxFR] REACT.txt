@@ -1,102 +1,93 @@
-//[DevoxxFR] REACT.JS 
+[DevoxxFR] REACT.JS : La partie  ‘V’ du MVC repensée
 
-Le grand intérêt des conférences et autre meetUp à mes yeux est qu'on en ressort toujours un peu changé. En mieux. Un peu moins bête quoi.
-Par exemple, j'ai assisté aux BoF et aux conférences de la journée du Vendredi du devoxx 2014 Paris, France et j'avais immédiatement envie d. 
+J’ai assisté (entre autres)  au B.O.F du ParisJS, ma grande première dans cette communauté et au Devoxx France.  Le sujet concernait  React.js, il était présenté par Khalib Jebbari. 
+La philosophie du Framework a piqué ma curiosité au vif.  Je l’ai testé  sur des cas basiques et vous propose  une brève présentation.
+React.JS : est une librairie JS dédiée aux interfaces graphiques.
+React.js (Git Hub :  https://github.com/facebook/react, )  est un Framework dédié à la création d’interface utilisateurs  des applications web et a été mis à la disposition de la communauté courant 2013. Propulsé par Facebook et Instagram,  il se range dans la catégorie V voire C du ‘MVC’
+React.js nous amène à remettre en cause l'interaction entre les views et les templates pour la construction des vues.
+En fait,  le principe de couplage du View-Model et des templates Handlebar  par exemple n'existe plus.  Il n'y en a que pour les composants! 
 
-Plein de belles choses! Les présentations qu'on attendait avec impatience (Java 8, IoT), des technologies/langages dont on entend parler sans se résoudre à s'y mettre (scala, groovy,play je m'excuse) et des innovations qui chamboulent à tout jamais la vision qu'on avait de notre façon de travailler.
-Dans la dernière catégorie, je range le framework de facebook React.js.
+Quelques notions clés :
+Les composants (component)
+	Notion centrale du Framework, les composants (component) sont des blocks HTML réutilisables et modulables. 
+Ce sont les briques de HTML et leurs  événements associés que l’on veut pouvoir rajouter au DOM.
+Les propriétés : props et state
+Les props sont des paramètres passés au composant.  Une fois créés, il n’est pas possible de les modifier sauf si l’on a implémenté un handler  modifiant ces propriétés via la propriété state.
+Le type des props peut être spécifié ainsi que la présence ou non du paramètre lors de la création du composant.
 
-Alors, React.js, pour ceux qui comme moi, il y a quelque jours, ne connaissent pas est un framework qui se propose de modifier notre façon de contruire la partie {View} de nos applications web. 
+DOM Virtuel
+React.js utilise un DOM virtuel pour les mises à jour du DOM. Ce mécanisme lui permet d’être très rapide. 
+En effet, il maintient une copie du DOM initial et un autre portant les modifications. Dès qu’il détecte un changement sur un nœud, il reconstruit entièrement l’arbre.  Cette opération optimise la régénération du DOM et rend l’affichage du rendu visuel plus rapide.
+	
+ JSX 
+Librairie optionnelle qui permet juste de représenter le contenu du composant sous forme d’arbre dans le DOM virtuel. 
+En l’absence de ce dernier, on gérer la logique d’affichage des composants en Javascript.  
+Le code ci-dessous montre la différence entre les deux syntaxes.
+//Création d’un composant hello world
+Avec JXS: 
+{Lien externe pour tester le code} http://jsfiddle.net/2UQKF/1/
+{Pour intégrer le code directement dans le billet}
+<iframe width="100%" height="300" src="http://jsfiddle.net/2UQKF/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0">
+</iframe>
 
-//Présentation 
+Avec le framework  REACT.DOM 
+{Lien externe pour tester le code} http://jsfiddle.net/RU4GA/2/
+{Pour intégrer le code directement dans le billet}
+<iframe width="100%" height="300" src="http://jsfiddle.net/RU4GA/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+La méthode render 
+Elle contient la logique d’affichage de la vue, l’imbrication des composants sous forme d’arbre à l’intérieur du DOM. On peut y déclarer du HTML, des composants ou un mix des deux.
+Cette méthode est appelée quasiment à chaque changement  d’état du composant.
 
-React.JS est une librairie JS exclusivement liée à la partie view. Il permet affiche le HTML et de répondre aux événements.
-Il nous amène à repenser l'interaction entre les views (Backbone, AngularJS etc.) et les templates.
-En fait, la notion de template comme on la connaît avec Handlebar n'existe plus. Il n'y en a que pour les composants.
+Exemple de composant « mixte» 
+Ce composant mixe la création d’un  composant qui contient des composants et du HTML.
 
-//Notions clés.
+Exemple de composant :
+{Lien externe pour tester le code}  http://jsfiddle.net/e9dFB/17/
+{Pour intégrer le code directement dans le billet}
+<iframe width="100%" height="300" src="http://jsfiddle.net/e9dFB/17/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-=== Component === The Component maintains an immutable property bag called props, and a state that represents the user-driven state of the UI.
-As part of the intermediate DOM generation, the Component also attaches event-handlers and binds the data contained in props and state.
+Note :
+ 
+La fonction render retourne à chaque fois l’ensemble de nos composants React sous forme d’arbre qui peuvent ou non être affichée. Dans le cas où l’on utilise JSX ne pouvant renvoyer qu’un seul nœud, il convient, quand cela est nécessaire de regrouper HTML des composants sous un node principal.
+Dans le cas de JSX, le commentaire au début du JS est obligatoire. 
 
-=== DOM Virtuel === 
-    Selon la documentation "React uses a *virtual DOM* diff implementation for ultra-high performance". 
+Conclusion
 
-==== JSX ===  : to build the component tree as a set of XML nodes. JSX language only makes it easy to create the intermediate DOM.
+Un Framework orienté vue propulsé par Facebook, on se doute qu’il a et aura ses adeptes.
+La prise en main est rapide et le dossier d’installation fourni des exemples exhaustifs incluant les cas d’utilisations avec requireJS.
 
-// Properties 
+Cependant, j’ai trouvé que React permet au développeur que je suis de  mettre beaucoup de logique dans la vue.  Habituée à séparer la View-model et ses  templates, pouvoir mixer  l’ergonomie de l’application (la création des composants et la manipulation du DOM) et la logique de fonctionnement  (Gestion évènements utilisateurs et mise à jour de l’interface utilisateur voire du model)  au même endroit  me semble un peu …  propice  à l’écriture de code spaghetti .
 
-//State
+Il serait néanmoins intéressant de l’intégrer dans une vraie application MVC pour un retour plus complet. 
+ Dans ce billet j’ai voulu, comme lors de la session du BOF,  partager sa philosophie qui reste interressante  et son utilisation sur des cas basiques de construction de vues pour les applications web.
 
-//Exemple de code : Hello world 
+Des bonnes pratiques ?
 
--- Code HTML  - 
-<!DOCTYPE html>
-<html>	
-	<head>
-   	   <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
- 	   <title> Hello world with React.js </title>   
-  </head>
-  <body>
-  	 <div id="helloooo"></div>
-  	
-  	<script src="build/react.js"></script>
-    <script src="build/JSXTransformer.js"></script>
-    <script type="text/jsx" src="helloworld.js"></script> 
-  </body>
-</html>
+Sur le site officiel du projet,  les développeurs du Framework préconisent entre autres de :
+Découper l’ergonomie en composants les plus petits possibles pour faciliter les tests unitaires.
+Connaître le workflow minimal de l’application
+Identifier les composants sujets à des modifications
+Implémenter les fonctions de mises à jour sur ces composants.
 
--- Exemple de création du composant ( fichier.js)
-/** @jsx React.DOM */
-var App = React.createClass({
-	render : function(){
-		return (
-				<div>
-					<h1> Hello world. I am a component! </h1>
-					<p> You have nothing to worry about.</p>
-				</div>
-			   )
-	}
-});
-
-//Appel du composant. 
-// Le deuxième paramètre doit correspondre à un tag du fichier HTML Défini.
-React.renderComponent(<App />, helloooo);
-
-Commentaire : 
- Dans cet exemple basique, il convient de spécifier quelques points :
-
- Dans le fichier HTML :  
-   * La div doit avoir un id, si je remplace par une classe, j'ai ReferenceError (Uncaught ReferenceError: helloooo is not defined)
-
- Dans le fichier Javascript : React.renderComponent(<App />, helloooo);
-   * Sur cette ligne on fait appel au composant que l'on vient de créer et le deuxième paramètre doit correspondre à un id existant dans le fichier HTML.
-
-   * La fonction render est la partie prise en charge par JSX pour la génération de l'arbre du DOM. Elle ne peut renvoyer qu'un seul élement.
-
--- Pour aller plus loin 
-http://code.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660
-http://facebook.github.io/react/docs/thinking-in-react.html
+La présentation sur React.js de Khalib Jebbari est disponible sur son github : https://github.com/DjebbZ/react-paris-js/blob/master/NOTES.txt
 
 
-Disclaimer : 
-   Les fichiers d'exemple fournis fonctionnent très bien tout seul. Mais, Dans mon cas, j'ai dû démarrer node.
-
-
-//Conclusion
-Un framework orienté vue propulsé par facebook, on se doute que c'est lourd.
-Personnellement je trouve que l'approche par composant prend tout son sens lorsqu'on sait à quoi doit ressembler sa vue.
-Le HTML est par nature sous forme d'arbre. Modéliser chaque portion et l'intégrer sous le noeud qui va bien, facilite 
-indéniablement les choses. C'est autre chose lorsque l'on doit "appender" la template dans le {$el} qui va bien.
-
-//Qui l'utilise ?
+Qui l'utilise ?
 -> Facebook/Instagram
+-> Khan Academy
 
-//Téléchargements 
-** Site officiel 
+Source 
+Présentation du Framework : 
+http://facebook.github.io/react/index.html
 
-//Source 
+http://code.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660
+
 http://facebook.github.io/react/docs/thinking-in-react.html
 
+http://webdesignporto.com/react-js-in-pure-javascript-facebook-library/
+
+
+Performance du DOM Virtuel :
+ http://calendar.perfplanet.com/2013/diff/
 
 
