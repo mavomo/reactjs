@@ -25,15 +25,11 @@ En l’absence de ce dernier, on gérer la logique d’affichage des composants 
 Le code ci-dessous montre la différence entre les deux syntaxes.
 //Création d’un composant hello world
 Avec JXS: 
-{Lien externe pour tester le code} http://jsfiddle.net/2UQKF/1/
-{Pour intégrer le code directement dans le billet}
-<iframe width="100%" height="300" src="http://jsfiddle.net/2UQKF/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0">
-</iframe>
+[Link jsfiddle](http://jsfiddle.net/2UQKF/1/)
 
 Avec le framework  REACT.DOM 
-{Lien externe pour tester le code} http://jsfiddle.net/RU4GA/2/
-{Pour intégrer le code directement dans le billet}
-<iframe width="100%" height="300" src="http://jsfiddle.net/RU4GA/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+[Link jsfiddle](http://jsfiddle.net/RU4GA/2/)
+
 La méthode render 
 Elle contient la logique d’affichage de la vue, l’imbrication des composants sous forme d’arbre à l’intérieur du DOM. On peut y déclarer du HTML, des composants ou un mix des deux.
 Cette méthode est appelée quasiment à chaque changement  d’état du composant.
@@ -42,9 +38,7 @@ Exemple de composant « mixte» 
 Ce composant mixe la création d’un  composant qui contient des composants et du HTML.
 
 Exemple de composant :
-{Lien externe pour tester le code}  http://jsfiddle.net/e9dFB/17/
-{Pour intégrer le code directement dans le billet}
-<iframe width="100%" height="300" src="http://jsfiddle.net/e9dFB/17/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+[Link jsfiddle](http://jsfiddle.net/e9dFB/17/)
 
 Note :
  
